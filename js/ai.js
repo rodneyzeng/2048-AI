@@ -37,7 +37,7 @@ AI.prototype.search = function(depth, alpha, beta, positions, cutoffs) {
       if (newGrid.move(direction).moved) {
         positions++;
         if (newGrid.isWin()) {
-          return { move: direction, score: 10000, positions: positions, cutoffs: cutoffs };
+          return { move: direction, score: 100000, positions: positions, cutoffs: cutoffs };
         }
         var newAI = new AI(newGrid);
 
@@ -45,7 +45,7 @@ AI.prototype.search = function(depth, alpha, beta, positions, cutoffs) {
           result = { move: direction, score: newAI.eval() };
         } else {
           result = newAI.search(depth-1, bestScore, beta, positions, cutoffs);
-          if (result.score > 9900) { // win
+          if (result.score > 99000) { // win
             result.score--; // to slightly penalize higher depth from win
           }
           positions = result.positions;
@@ -85,7 +85,7 @@ AI.prototype.search = function(depth, alpha, beta, positions, cutoffs) {
 
 
 
-    
+
     /*
     var candidates = [];
     var cells = this.grid.availableCells();
@@ -99,7 +99,7 @@ AI.prototype.search = function(depth, alpha, beta, positions, cutoffs) {
           var vector = this.grid.getVector(direction);
           var target = this.grid.findFarthestPosition(cell, vector);
           if (this.grid.cellOccupied(target.next)) {
-            var targetValue = this.grid.cells[target.next.x][target.next.y].value; 
+            var targetValue = this.grid.cells[target.next.x][target.next.y].value;
             if (targetValue == value) {
               scores[value][i] -= 4;
             } else {
@@ -144,7 +144,7 @@ AI.prototype.search = function(depth, alpha, beta, positions, cutoffs) {
       }
     }
     //*/
-        
+
     /*
     for (var samples=0; samples<4; samples++) {
       var newGrid = this.grid.clone();
@@ -235,4 +235,3 @@ AI.prototype.translate = function(move) {
     3: 'left'
   }[move];
 }
-
