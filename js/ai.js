@@ -212,7 +212,7 @@ AI.prototype.iterativeDeep = function() {
   var depth = 0;
   var best;
   do {
-    var newBest = this.search(depth, -10000, 10000, 0 ,0);
+    var newBest = this.search(depth, -100000, 100000, 0 ,0);
     if (newBest.move == -1) {
       //console.log('BREAKING EARLY');
       break;
