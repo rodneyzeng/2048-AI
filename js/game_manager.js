@@ -42,7 +42,7 @@ GameManager.prototype.setup = function () {
   this.grid.addStartTiles();
 
   this.ai           = new AI(this.grid);
-
+  this.moves        = 0;
   this.score        = 0;
   this.over         = false;
   this.won          = false;
@@ -56,6 +56,7 @@ GameManager.prototype.setup = function () {
 GameManager.prototype.actuate = function () {
   this.actuator.actuate(this.grid, {
     score: this.score,
+    moves: this.moves,
     over:  this.over,
     won:   this.won
   });
@@ -65,6 +66,7 @@ GameManager.prototype.actuate = function () {
 GameManager.prototype.move = function(direction) {
   var result = this.grid.move(direction);
   this.score += result.score;
+  this.moves ++;
 
   if (!result.won) {
     if (result.moved) {

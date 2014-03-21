@@ -1,9 +1,10 @@
 function HTMLActuator() {
   this.tileContainer    = document.getElementsByClassName("tile-container")[0];
+  this.movesContainer   = document.getElementsByClassName("moves-container")[0];
   this.scoreContainer   = document.getElementsByClassName("score-container")[0];
   this.messageContainer = document.getElementsByClassName("game-message")[0];
   this.sharingContainer = document.getElementsByClassName("score-sharing")[0];
-
+  this.moves = 0;
   this.score = 0;
 }
 
@@ -22,6 +23,7 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
     });
 
     self.updateScore(metadata.score);
+    self.updateMoves(metadata.moves);
 
     if (metadata.over) self.message(false); // You lose
     if (metadata.won) self.message(true); // You win!
@@ -103,6 +105,15 @@ HTMLActuator.prototype.updateScore = function (score) {
 
     this.scoreContainer.appendChild(addition);
   }
+};
+
+HTMLActuator.prototype.updateMoves = function (moves) {
+//alert(moves + "");
+  //this.clearContainer(this.movesContainer);
+
+  this.moves = moves;
+
+  this.movesContainer.textContent = this.moves;
 };
 
 HTMLActuator.prototype.message = function (won) {
