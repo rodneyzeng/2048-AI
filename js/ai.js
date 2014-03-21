@@ -10,7 +10,7 @@ AI.prototype.eval = function() {
       //monoWeight   = 0.0,
       //islandWeight = 0.0,
       mono2Weight  = 1.0,
-      emptyWeight  = 2.8,
+      emptyWeight  = 2.6,
       maxWeight    = 1.0;
 
   return this.grid.smoothness() * smoothWeight
